@@ -293,7 +293,7 @@ settings_col_dict_census = {
     9: ['Deprivation', deprivation],
     10: ['Occupation', occupation_census],
     11: ['Sex', sex_census],
-    12: ['Avg Household Size', average_household_size],
+    12: ["Households size", household_size_census], 
     13: ['Tenure' , tenure_census],
     14: ['Bedrooms', bedrooms_census],
     15: ['All Census', all_census],
