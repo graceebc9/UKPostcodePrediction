@@ -1,29 +1,30 @@
 
 total_builds_new = ['all_types_total_buildings', ] 
-                    #  'log_all_types_total_buildings',]
+                   
 
 res = [ 
-'comm_alltypes_count',
-'unknown_alltypes',
-'all_res_total_buildings',
-'all_res_premise_area_total',
-'all_res_gross_area_total',
-'all_res_heated_vol_fc_total',
-'all_res_heated_vol_h_total',
-'all_res_base_floor_total',
-'all_res_listed_bool_total',
-'clean_res_total_buildings',
-'clean_res_premise_area_total',
-'clean_res_gross_area_total',
-'clean_res_heated_vol_fc_total',
-'clean_res_heated_vol_h_total',
-'clean_res_base_floor_total',
-'clean_res_basement_heated_vol_max_total',
-'perc_all_res',
-'perc_clean_res',
-'perc_all_res_basement',
-'perc_all_res_listed',
-
+'all_types_total_buildings',
+ 'all_types_premise_area_total',
+ 'all_types_total_fl_area_H_total',
+ 'all_types_total_fl_area_FC_total',
+ 'all_types_uprn_count_total',
+ 'mixed_alltypes_count',
+ 'comm_alltypes_count',
+ 'unknown_alltypes_count',
+ 'clean_res_total_buildings',
+ 'clean_res_premise_area_total',
+ 'clean_res_total_fl_area_H_total',
+ 'clean_res_total_fl_area_FC_total',
+ 'clean_res_base_floor_total',
+ 'clean_res_basement_heated_vol_total',
+ 'clean_res_listed_bool_total',
+ 'clean_res_uprn_count_total',
+ 'derived_unknown_res',
+ 'total_res_total_buildings',
+ 'percent_residential',
+  'all_res_total_fl_area_H_total',
+ 'all_res_total_fl_area_FC_total',
+ 'confidence_floor_area',
 ]
 
 uprn_cols = [
@@ -31,11 +32,11 @@ uprn_cols = [
 'all_res_uprn_count_total',]
 
 outb = [
-'outb_res_total_buildings',
-'outb_res_premise_area_total',
-'outb_res_gross_area_total',
-'outb_res_heated_vol_fc_total',
-'outb_res_heated_vol_h_total',]
+ 'outb_res_total_buildings',
+ 'outb_res_premise_area_total',
+ 'outb_res_total_fl_area_H_total',
+ 'outb_res_total_fl_area_FC_total',
+ 'outb_res_uprn_count_total',]
 
 type_cols = [
 '2 storeys terraces with t rear extension_pct',
@@ -54,7 +55,7 @@ type_cols = [
 'Tall terraces 3-4 storeys_pct',
 'Very large detached_pct',
 'Very tall point block flats_pct',
-'all_unknown_pct',
+'all_unknown_typology',
 ]
 
 age_cols = [
@@ -66,7 +67,7 @@ age_cols = [
 'None_age_pct',
 'Post 1999_pct',
 'Pre 1919_pct',
-'Unknown_age_pct',] 
+'all_none_age_pct',] 
 
 temp_cols = ['HDD',
 'CDD',
@@ -86,10 +87,11 @@ pc_area  = ['postcode_area']
 
 region_cols =[ 
 'region',
-'oa11cd',
-'lsoa11cd',
-'msoa11cd',
-'ladcd' ] 
+'oa21cd',
+ 'lsoa21cd',
+ 'msoa21cd',
+ 'ladcd'
+]
 
 
 domain_invariant_inc_age = ['postcode_area',

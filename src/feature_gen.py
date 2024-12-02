@@ -1,6 +1,26 @@
 import pandas as pd 
 import logging
 
+cols =[
+      'perc_large_houses',
+      'perc_standard_houses',
+      'perc_small_terraces',
+       'perc_estates',
+      'perc_all_flats',
+      'perc_age_Pre-1919',
+      'perc_age_1919-1999',
+      'perc_age_Post-1999',
+      'perc_white',
+      'perc_asian',
+      'Perc_econ_employed',
+      'perc_econ_inactive', 
+    'perc_econ_unemployed',
+      'perc_hh_size_small',
+        'perc_hh_size_medium',
+        'perc_hh_size_large',
+      ]
+
+
 def econ_settings():
    econ_act = ['economic_activity_perc_Economically active (excluding full-time students): In employment: Employee: Part-time',
  'economic_activity_perc_Economically active (excluding full-time students): In employment: Employee: Full-time',
