@@ -29,7 +29,7 @@ res = [
 
 uprn_cols = [
 'all_types_uprn_count_total',
-'all_res_uprn_count_total',]
+'clean_res_uprn_count_total']
 
 outb = [
  'outb_res_total_buildings',
@@ -64,7 +64,6 @@ age_cols = [
 '1960-1979_pct',
 '1980-1989_pct',
 '1990-1999_pct',
-'None_age_pct',
 'Post 1999_pct',
 'Pre 1919_pct',
 'all_none_age_pct',] 
