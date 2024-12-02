@@ -1,9 +1,8 @@
 
-total_builds_new = ['all_types_total_buildings', ] 
+total_builds_new = ['all_types_total_buildings' ] 
                    
 
 res = [ 
-'all_types_total_buildings',
  'all_types_premise_area_total',
  'all_types_total_fl_area_H_total',
  'all_types_total_fl_area_FC_total',
@@ -24,7 +23,6 @@ res = [
   'all_res_total_fl_area_H_total',
  'all_res_total_fl_area_FC_total',
  'confidence_floor_area',
- 'all_types_uprn_count_total',
 'clean_res_uprn_count_total'
 ]
 
