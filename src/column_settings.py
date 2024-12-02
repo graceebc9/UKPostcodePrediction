@@ -464,7 +464,6 @@ settings_dict = {
 5: ['Temperature', temp_cols],
 6: ['Local Morph.', postcode_geoms],
 7: ['Region', region_cols],
-8: ['Count of UPRNs', uprn_cols],
 9: ['Socio-Demogs', all_census ] ,
 10: ['Urban/Rural',  rural_urban],
 11 : ['COB, Res BS', res  + total_builds_new],
