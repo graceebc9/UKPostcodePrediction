@@ -297,18 +297,19 @@ settings_col_dict_census = {
 } 
 
 
-feat_cols= ['all_res_heated_vol_h_total',
- 'clean_res_total_buildings',
- 'clean_res_heated_vol_h_total',
+feat_cols= ['all_types_total_fl_area_H_total',
+ 'all_types_premise_area_total',
+  'clean_res_total_buildings',
  'clean_res_premise_area_total',
- 'all_res_base_floor_total',
+ 'clean_res_total_fl_area_H_total',
+ 'clean_res_base_floor_total',
  'Domestic outbuilding_pct',
  'Standard size detached_pct',
  'Standard size semi detached_pct',
  'Small low terraces_pct',
  '2 storeys terraces with t rear extension_pct',
  'Pre 1919_pct',
- 'Unknown_age_pct',
+ 'all_none_age_pct',
  '1960-1979_pct',
  '1919-1944_pct',
  'Post 1999_pct',
@@ -502,5 +503,5 @@ settings_dict = {
 # 47: ['Feature Imp Cols 3', feat_cols_3],
 # 48: ['Feature Imp Cols 4', feat_cols_4],
 # 49: ['final FI',  feat_cols_5]
-50: ['FI + region' , feat_cols + ['oa11cd']] , 
+50: ['FI + region' , feat_cols + ['oa21cd']] , 
 }  
