@@ -353,7 +353,25 @@ feat_cols_new = ['all_types_total_buildings',
  'household_comp_perc_Single family household: All aged 66 years and over',
 ]
 
-
+feat_cols_final = ['all_types_uprn_count_total',
+'ladcd',
+'clean_res_uprn_count_total',
+'all_res_total_fl_area_H_total',
+'Pre 1919_pct',
+'all_types_total_fl_area_H_total',
+'clean_res_premise_area_total',
+'all_types_total_fl_area_FC_total',
+'1919-1944_pct',
+'all_types_premise_area_total',
+'clean_res_total_buildings',
+'all_res_total_fl_area_FC_total',
+'clean_res_total_fl_area_H_total',
+'msoa21cd',
+'Standard size detached_pct',
+'clean_res_total_fl_area_FC_total',
+'region',
+'postcode_density',
+'Post 1999_pct', ] 
 
 settings_dict = {
 0: ['COB' , total_builds_new ] , 
@@ -401,5 +419,6 @@ settings_dict = {
 43: ['Domain Invariant' , domain_invariant],
 44: ['Feature Imp Cols', feat_cols],
 45: ['Feature Imp Cols New', feat_cols_new],
+46: ['Feature Imp Cols Final', feat_cols_final],
 50: ['FI + region' , feat_cols + ['oa21cd']] , 
 }  
