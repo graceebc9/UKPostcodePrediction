@@ -437,5 +437,7 @@ settings_dict = {
 44: ['Feature Imp Cols', feat_cols],
 45: ['Feature Imp Cols New', feat_cols_new],
 46: ['Feature Imp Cols Final', feat_cols_final],
+47: ['Feature Imp Cols Final Excl. Region', feat_cols_final_excl_region],
 50: ['FI + region' , feat_cols + ['oa21cd']] , 
+
 }  
