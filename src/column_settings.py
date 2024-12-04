@@ -388,7 +388,32 @@ feat_cols_final_excl_region = ['all_types_uprn_count_total',
 'Standard size detached_pct',
 'clean_res_total_fl_area_FC_total',
 'postcode_density',
-'Post 1999_pct', ] 
+'Post 1999_pct' ] 
+
+FC_3 = ['all_types_uprn_count_total',
+'clean_res_uprn_count_total',
+'all_res_total_fl_area_H_total',
+'Pre 1919_pct',
+'all_types_total_fl_area_H_total',
+'clean_res_premise_area_total',
+'all_types_total_fl_area_FC_total',
+'1919-1944_pct',
+'all_types_premise_area_total',
+'clean_res_total_buildings',
+'all_res_total_fl_area_FC_total',
+'clean_res_total_fl_area_H_total',
+'Standard size detached_pct',
+'clean_res_total_fl_area_FC_total',
+'postcode_density',
+'Post 1999_pct', 
+'household_siz_perc_perc_1 person in household',
+'economic_activity_perc_Economically active (excluding full-time students): In employment: Employee: Full-time',
+'socio_class_perc_L1, L2 and L3: Higher managerial, administrative and professional occupations',
+ 'socio_class_perc_L4, L5 and L6: Lower managerial, administrative and professional occupations',
+ 'ethnic_group_perc_White: English, Welsh, Scottish, Northern Irish or British',
+ 'household_comp_perc_One-person household',
+ 'household_comp_perc_Single family household: All aged 66 years and over',
+ ] 
 
 settings_dict = {
 0: ['COB' , total_builds_new ] , 
@@ -438,6 +463,7 @@ settings_dict = {
 45: ['Feature Imp Cols New', feat_cols_new],
 46: ['Feature Imp Cols Final', feat_cols_final],
 47: ['Feature Imp Cols Final Excl. Region', feat_cols_final_excl_region],
+48: ['Feat Imp 3',FC_3 ], 
 50: ['FI + region' , feat_cols + ['oa21cd']] , 
 
 }  
