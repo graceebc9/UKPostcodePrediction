@@ -15,14 +15,16 @@ from src.problem_definitions import problem_minimum
 # Configuration
 col_setting = int(os.getenv('COL_SETTING'))
 folder = os.getenv('MODEL_FOLDER')
+if folder is None:
+    folder = 'nebula'
 dataset_name = 'NEBULA_englandwales_domestic_filtered'
-# folder = 'nebula'
+
 region ='None'
 # col_setting = 52
 label = os.getenv('LABEL')
 time_lim = 15000 
 
-model_path= f'/home/gb669/rds/hpc-work/energy_map/data/automl_models/{folder}/{dataset_name}__local_{label}__{time_lim}__colset_{col_setting}__best_quality___tsp_1.0__all__{region}'
+model_path= f'/home/gb669/rds/hpc-work/energy_map/data/automl_models/{folder}/{dataset_name}__global_{label}__{time_lim}__colset_{col_setting}__best_quality___tsp_1.0__all__{region}'
 
 region ='SE'
 # New output path structure
