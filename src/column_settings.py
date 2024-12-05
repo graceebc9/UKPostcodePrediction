@@ -460,6 +460,43 @@ FC25_noregion = ['all_types_uprn_count_total',
  'household_comp_perc_One-person household',
  'household_comp_perc_Single family household: All aged 66 years and over']
 
+
+fc_sensible = ['all_types_uprn_count_total',
+ 'clean_res_uprn_count_total',
+ 'all_res_total_fl_area_H_total',
+ 'Pre 1919_pct',
+ 'clean_res_total_buildings',
+ 'clean_res_premise_area_total',
+ '1919-1944_pct',
+ 'all_types_premise_area_total',
+ 'Standard size detached_pct',
+ 'postcode_density',
+ 'clean_res_total_fl_area_H_total',
+ 'postcode_area',
+ 'Post 1999_pct',
+ 'household_siz_perc_perc_1 person in household',
+'economic_activity_perc_Economically active (excluding full-time students): In employment: Employee: Full-time',
+'socio_class_perc_L1, L2 and L3: Higher managerial, administrative and professional occupations',
+ 'socio_class_perc_L4, L5 and L6: Lower managerial, administrative and professional occupations',
+ 'ethnic_group_perc_White: English, Welsh, Scottish, Northern Irish or British',
+ 'household_comp_perc_One-person household',
+ 'household_comp_perc_Single family household: All aged 66 years and over']
+
+
+fc_final = [ 
+'all_res_total_fl_area_H_total',
+'Pre 1919_pct',
+'Standard size detached_pct',
+'postcode_area',
+'HDD_winter',  
+'economic_activity_perc_Economically active (excluding full-time students): In employment: Employee: Full-time',
+ 'ethnic_group_perc_White: English, Welsh, Scottish, Northern Irish or British',
+ 'socio_class_perc_L1, L2 and L3: Higher managerial, administrative and professional occupations',
+ 'household_comp_perc_One-person household',
+ 'Domestic outbuilding_pct',
+ '3-4 storey and smaller flats_pct',
+ ] 
+
 settings_dict = {
 0: ['COB' , total_builds_new ] , 
 1: ['Residential BS', res],
@@ -512,4 +549,5 @@ settings_dict = {
 49: ['Feat Imp 25', FC_25], 
 50: ['FI + region' , feat_cols + ['oa21cd']] , 
 51: ['Feat Imp 25 no region',  FC25_noregion ],
+52: ['FI_final_minimal', fc_final] , 
 }  

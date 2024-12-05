@@ -4,136 +4,103 @@
 from .column_settings import settings_dict
 import numpy as np 
 
-# Base dictionary of all possible parameters and their bounds
-base_params = {
-    'all_res_heated_vol_h_total': [0, 7600],
-    'all_types_total_buildings': [0, 150],
-    'clean_res_total_buildings': [0, 150],
-    'all_res_total_buildings': [0, 150],
-    'clean_res_heated_vol_h_total': [0, 7400],
-    'Domestic outbuilding_pct': [0, 52],
-    'Standard size detached_pct': [0, 100],
-    'Standard size semi detached_pct': [0, 100],
-    'Small low terraces_pct': [0, 100],
-    '2 storeys terraces with t rear extension_pct': [0, 100],
-    'Pre 1919_pct': [0, 100],
-    'Unknown_age_pct': [0, 20],
-    '1960-1979_pct': [0, 100],
-    '1919-1944_pct': [0, 100],
-    'Post 1999_pct': [0, 100],
-    '1945-1959_pct': [0, 100],
-    '1980-1989_pct': [0, 100],
-    '1990-1999_pct': [0, 100],
-    'Post 1999_pct': [0, 100],  
-    'None_age_pct': [0, 15],
-    'HDD': [30, 80],
-    'CDD': [0, 8],
-    'HDD_summer': [3, 15],
-    'HDD_winter': [30, 60],
-    'postcode_area': [1, 26000],
-    'postcode_density': [0, 0.5],
-    'log_pc_area': [5, 12],
-    'ethnic_group_perc_White: English, Welsh, Scottish, Northern Irish or British': [0, 1],
-    'central_heating_perc_Mains gas only': [0, 1],
-    'household_siz_perc_perc_1 person in household': [0, 1],
-    'Average Household Size': [1, 5],
-    'clean_res_premise_area_total': [0, 2000],
-    'all_res_premise_area_total': [0, 2000],
-    'all_res_base_floor_total': [0, 1000]
-}
+
+import numpy as np
+import pandas as pd
+from scipy.stats import qmc
+from SALib.sample import saltelli
 
 
-problem_feat_cols = {
-    'num_vars': 26,
-    'names': [
-        'all_types_total_fl_area_H_total',
-        'all_types_premise_area_total',
-        'clean_res_total_buildings',
-        'clean_res_premise_area_total',
-        'clean_res_total_fl_area_H_total',
-        'clean_res_base_floor_total',
-        'Domestic outbuilding_pct',
-        'Standard size detached_pct',
-        'Standard size semi detached_pct',
-        'Small low terraces_pct',
-        '2 storeys terraces with t rear extension_pct',
-        'Pre 1919_pct',
-        'all_none_age_pct',
-        '1960-1979_pct',
-        '1919-1944_pct',
-        'Post 1999_pct',
-        'HDD',
-        'CDD',
-        'HDD_summer',
-        'HDD_winter',
-        'postcode_area',
-        'postcode_density',
-        'log_pc_area',
-        'ethnic_group_perc_White: English, Welsh, Scottish, Northern Irish or British',
-        'central_heating_perc_Mains gas only',
-        'household_siz_perc_perc_1 person in household'
-    ],
-    'bounds': [
-        [740.0, 6830.0],    # all_types_total_fl_area_H_total
-        [350.0, 3340.0],    # all_types_premise_area_total
-        [2, 43],            # clean_res_total_buildings
-        [340.0, 3170.0],    # clean_res_premise_area_total
-        [730.0, 6650.0],    # clean_res_total_fl_area_H_total
-        [0.0, 0.0],         # clean_res_base_floor_total
-        [3.2, 40.9],        # Domestic outbuilding_pct
-        [3.6, 100],         # Standard size detached_pct
-        [6.9, 100],         # Standard size semi detached_pct
-        [6.8, 100],         # Small low terraces_pct
-        [10.2, 100],        # 2 storeys terraces with t rear extension_pct
-        [5.6, 100],         # Pre 1919_pct
-        [0, 0.0],           # all_none_age_pct
-        [4.0, 100],         # 1960-1979_pct
-        [5.3, 100],         # 1919-1944_pct
-        [2.7, 100],         # Post 1999_pct
-        [46.24, 65.34],     # HDD
-        [0.0, 5.42],        # CDD
-        [6.03, 13.23],      # HDD_summer
-        [39.65, 52.34],     # HDD_winter
-        [1830.0, 35460.0],  # postcode_area
-        [0.046, 0.33],      # postcode_density
-        [7.51, 10.47],       # log_pc_area
-        [0.3, 1.0],         # ethnic_group_perc_White
-        [0.6, 0.9],         # central_heating_perc_Mains gas only
-        [0.1, 0.5]          # household_siz_perc_perc_1 person in household
-    ],
-    'groups': [
-        'G1',     # all_types_total_fl_area_H_total (area measures group)
-        'G1',     # all_types_premise_area_total
-        'G2',     # clean_res_total_buildings (independent)
-        'G1',     # clean_res_premise_area_total
-        'G1',     # clean_res_total_fl_area_H_total
-        'G1',     # clean_res_base_floor_total
-        'G3',     # Domestic outbuilding_pct (building type group)
-        'G4',     # Standard size detached_pct
-        'G5',     # Standard size semi detached_pct
-        'G6',     # Small low terraces_pct
-        'G7',     # 2 storeys terraces with t rear extension_pct
-        'G8',     # Pre 1919_pct (age group)
-        'G9',     # all_none_age_pct
-        'G10',    # 1960-1979_pct
-        'G11',    # 1919-1944_pct
-        'G12',    # Post 1999_pct
-        'G13',    # HDD (temperature group)
-        'G14',    # CDD
-        'G13',    # HDD_summer
-        'G13',    # HDD_winter
-        'G15',    # postcode_area (postal metrics group)
-        'G16',    # postcode_density
-        'G15',    # log_pc_area
-        'G17',    # ethnic_group_perc_White (independent)
-        'G18',    # central_heating_perc_Mains gas only (independent)
-        'G19'     # household_siz_perc_perc_1 person in household (independent)
-    ]
-}
+def get_mapping_msoa():
+    ms = pd.read_csv('/Users/gracecolverd/UKPostcodePrediction/notebooks_local/msoa_mapping.csv')
+    return ms 
 
+def sobol_gsa_sampling(problem, msoa_mapping_df, N):
+    """
+    Generate Sobol samples for GSA with MSOA hierarchy and constraints
+    
+    Parameters:
+    -----------
+    problem : dict
+        SALib problem definition containing:
+        - num_vars: number of variables
+        - names: list of variable names
+        - bounds: list of (lower, upper) bounds
+    msoa_mapping_df : pd.DataFrame
+        DataFrame containing mapping between MSOA, LAD, and region
+        Must have columns: 'msoa21cd', 'ladcd', 'region'
+    N : int
+        Number of base samples (total samples will be N*(2D+2) where D is num_vars)
+    
+    Returns:
+    --------
+    np.ndarray : Array of samples ready for GSA
+    """
+    # Generate Saltelli samples for continuous variables
+    param_values = saltelli.sample(problem, N)
+    
+    # Add MSOA sampling
+    n_msoas = len(msoa_mapping_df)
+    n_samples = param_values.shape[0]
+    
+    # Generate Sobol sequence for MSOA selection
+    sampler = qmc.Sobol(d=1, scramble=True)
+    msoa_sobol = sampler.random(n=n_samples)
+    msoa_indices = (msoa_sobol * n_msoas).astype(int)
+    msoa_indices = np.minimum(msoa_indices, n_msoas - 1)
+    
+    # Get the selected MSOAs and their corresponding LAD and Region
+    selected_rows = msoa_mapping_df.iloc[msoa_indices.flatten()]
+    
+    # Create DataFrame with all variables
+    results_df = pd.DataFrame(param_values, columns=problem['names'])
+    
+    # Add geographical variables
+    results_df['msoa21cd'] = selected_rows['msoa21cd'].values
+    results_df['ladcd'] = selected_rows['ladcd'].values
+    results_df['region'] = selected_rows['region'].values
+    
+    # Add required base floor column
+    results_df['all_res_base_floor_total'] = 0.0
+    
+    # Convert back to numpy array for GSA
+    param_array = results_df[problem['names']].values
+    
+    return param_array
 
+def model_wrapper(X, predictor, problem):
+    """
+    Wrapper function to make predictions using the model
+    
+    Parameters:
+    -----------
+    X : np.ndarray
+        Input array from Saltelli sampling
+    predictor : TabularPredictor
+        Trained AutoGluon predictor
+    problem : dict
+        Problem definition
+        
+    Returns:
+    --------
+    np.ndarray : Model predictions
+    """
+    df = pd.DataFrame(X, columns=problem['names'])
+    df['all_res_base_floor_total'] = 0.0
+    
+    try:
+        predictions = predictor.predict(df).values
+        if np.any(np.isnan(predictions)) or np.any(np.isinf(predictions)):
+            print(f"Warning: NaN or Inf in predictions")
+        return predictions
+    except Exception as e:
+        print(f"Error in model prediction: {e}")
+        return np.full(len(X), np.nan)
 
-problem_feat_cols_final_excl_region = {
+# Example usage
+if __name__ == "__main__":
+    # Updated problem definition with all continuous variables
+    problem = {
         'num_vars': 16,
         'names': [
             'all_types_uprn_count_total',
@@ -141,7 +108,7 @@ problem_feat_cols_final_excl_region = {
             'all_res_total_fl_area_H_total',
             'Pre 1919_pct',
             'all_types_total_fl_area_H_total',
-            'clean_res_premise_area_total', 
+            'clean_res_premise_area_total',
             'all_types_total_fl_area_FC_total',
             '1919-1944_pct',
             'all_types_premise_area_total',
@@ -156,7 +123,7 @@ problem_feat_cols_final_excl_region = {
         'bounds': [
             [6.0, 50.0],           # all_types_uprn_count_total
             [6.0, 49.0],           # clean_res_uprn_count_total
-            [0, 1],                # all_res_total_fl_area_H_total (empty)
+            [740.0, 6780.0],       # all_res_total_fl_area_H_total
             [5.6, 100.0],          # Pre 1919_pct
             [740.0, 6830.0],       # all_types_total_fl_area_H_total
             [340.0, 3170.0],       # clean_res_premise_area_total
@@ -164,32 +131,24 @@ problem_feat_cols_final_excl_region = {
             [5.3, 100.0],          # 1919-1944_pct
             [350.0, 3340.0],       # all_types_premise_area_total
             [2.0, 43.0],           # clean_res_total_buildings
-            [0, 1],                # all_res_total_fl_area_FC_total (empty)
+            [740.0, 6550.0],       # all_res_total_fl_area_FC_total
             [730.0, 6650.0],       # clean_res_total_fl_area_H_total
             [3.6, 100.0],          # Standard size detached_pct
             [730.0, 6410.0],       # clean_res_total_fl_area_FC_total
             [0.046, 0.33],         # postcode_density
             [2.7, 100.0]           # Post 1999_pct
-        ],
-        'groups': [
-            'building_count',    # all_types_uprn_count_total
-            'building_count',    # clean_res_uprn_count_total
-            'floor_area',      # all_res_total_fl_area_H_total
-            'age1',              # Pre 1919_pct
-            'floor_area',      # all_types_total_fl_area_H_total
-            'floor_area',       # clean_res_premise_area_total
-            'floor_area',       # all_types_total_fl_area_FC_total
-            'age2',              # 1919-1944_pct
-            'floor_area',       # all_types_premise_area_total
-            'building_count',   # clean_res_total_buildings
-            'floor_area',       # all_res_total_fl_area_FC_total
-            'floor_area',      # clean_res_total_fl_area_H_total
-            'building_type',    # Standard size detached_pct
-            'floor_area',       # clean_res_total_fl_area_FC_total
-            'density',          # postcode_density
-            'age3'              # Post 1999_pct
         ]
     }
+    
+    # Example MSOA mapping
+    msoa_mapping = get_mapping_msoa()
+    
+    # Generate samples
+    samples = sobol_gsa_sampling(problem, msoa_mapping, N=1024)
+    
+    # The samples can then be used with the GSA script:
+    # Y = model_wrapper(samples, predictor, problem)
+    # Si = sobol.analyze(problem, Y)
     
 
 def check_and_enforce_heating_volume_constraint(x, problem_def):
