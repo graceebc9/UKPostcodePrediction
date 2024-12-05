@@ -100,7 +100,7 @@ domain_invariant_inc_age = ['postcode_area',
 'Post 1999_pct',
 'Pre 1919_pct',
 'all_res_total_buildings',
-'all_res_premise_area_total',
+'all_types_premise_area_total',
 'all_res_heated_vol_H_total', 
 ] 
 domain_invariant = ['postcode_area',
