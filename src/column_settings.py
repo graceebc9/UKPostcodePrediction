@@ -96,18 +96,17 @@ domain_invariant_inc_age = ['postcode_area',
 '1960-1979_pct',
 '1980-1989_pct',
 '1990-1999_pct',
-'None_age_pct',
+'all_none_age_pct',
 'Post 1999_pct',
 'Pre 1919_pct',
-'Unknown_age_pct',
 'all_res_total_buildings',
 'all_res_premise_area_total',
-'all_res_heated_vol_h_total', 
+'all_res_heated_vol_H_total', 
 ] 
 domain_invariant = ['postcode_area',
 'postcode_density',
-'all_res_premise_area_total',
-'all_res_heated_vol_h_total'
+'all_types_premise_area_total',
+'all_types_heated_vol_H_total'
 ]
 
 
@@ -523,7 +522,7 @@ settings_dict = {
 21: ['COB, NDVI' , total_builds_new + ndvi_cols],
 22: ['COB, NDVI, Temp, Urban/Rural' , total_builds_new + ndvi_cols + temp_cols + rural_urban], 
 23: ['COB, NDVI, Temp, Urban/Rural, Local Morph.' , total_builds_new + ndvi_cols + temp_cols + rural_urban + postcode_geoms ], 
-24: ['COB, NDVI, Temp, Urban/Rural, Local Morph., Type' ,  total_builds_new + ndvi_cols + temp_cols + rural_urban + postcode_geoms + type_cols ], 
+# 24: ['COB, NDVI, Temp, Urban/Rural, Local Morph., Type' ,  total_builds_new + ndvi_cols + temp_cols + rural_urban + postcode_geoms + type_cols ], 
 25: ['COB, NDVI, Temp, Urban/Rural, Local Morph., Socio-Demogs' , total_builds_new + ndvi_cols + temp_cols + rural_urban + postcode_geoms + all_census ], 
 26: ['COB, NDVI, Temp, Urban/Rural, Socio-Demogs' , total_builds_new + ndvi_cols + temp_cols + rural_urban  + all_census ], 
 27: ['COB, NDVI, Temp,\n Socio-Demogs' , total_builds_new + ndvi_cols + temp_cols  + all_census ], 
