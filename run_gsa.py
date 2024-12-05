@@ -28,9 +28,9 @@ time_lim = 15000
 
 model_path= f'/home/gb669/rds/hpc-work/energy_map/data/automl_models/{folder}/{dataset_name}__global__{label}__{time_lim}__colset_{col_setting}__best_quality___tsp_1.0__all__{region}'
 
-region ='SE'
+region_id ='SE'
 # New output path structure
-BASE_OUTPUT_PATH = f'/home/gb669/rds/hpc-work/energy_map/UKPostcodePrediction/sobol/{label}/{region}'
+BASE_OUTPUT_PATH = f'/home/gb669/rds/hpc-work/energy_map/UKPostcodePrediction/sobol/{label}/{region_id}'
 os.makedirs(BASE_OUTPUT_PATH, exist_ok=True)
 
 # Number of samples for Sobol analysis
@@ -58,7 +58,7 @@ predictor = TabularPredictor.load(model_path, require_version_match=True)
 def model_function(X):
     df = pd.DataFrame(X, columns=problem['names'])
     # df['all_res_base_floor_total'] = 0.0
-    df['region'] == region
+    df['region'] == [region_id for x  in range(len(df))]
     try:
         predictions = predictor.predict(df).values
         if np.any(np.isnan(predictions)) or np.any(np.isinf(predictions)):
