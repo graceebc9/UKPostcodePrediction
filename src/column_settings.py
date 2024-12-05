@@ -17,8 +17,8 @@ res = [
  'clean_res_base_floor_total',
  'clean_res_basement_heated_vol_total',
  'clean_res_listed_bool_total',
- 'derived_unknown_res',
- 'total_res_total_buildings',
+#  'derived_unknown_res',
+ 'all_res_total_buildings',
  'percent_residential',
   'all_res_total_fl_area_H_total',
  'all_res_total_fl_area_FC_total',
@@ -497,7 +497,7 @@ fc_final = [
  '3-4 storey and smaller flats_pct',
  ] 
 
- 
+single_floor_area  = 'all_res_total_fl_area_H_total'
 
 settings_dict = {
 0: ['COB' , total_builds_new ] , 
@@ -552,4 +552,5 @@ settings_dict = {
 50: ['FI + region' , feat_cols + ['oa21cd']] , 
 51: ['Feat Imp 25 no region',  FC25_noregion ],
 52: ['FI_final_minimal', fc_final + ['region'] ] , 
+53: ['Single_fl' , single_floor_area] , 
 }  
