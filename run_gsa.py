@@ -22,6 +22,8 @@ dataset_name = 'NEBULA_englandwales_domestic_filtered'
 region ='None'
 # col_setting = 52
 label = os.getenv('LABEL')
+if label is None:
+    raise ValueError('no target')
 time_lim = 15000 
 
 model_path= f'/home/gb669/rds/hpc-work/energy_map/data/automl_models/{folder}/{dataset_name}__global_{label}__{time_lim}__colset_{col_setting}__best_quality___tsp_1.0__all__{region}'
