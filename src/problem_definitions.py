@@ -11,96 +11,39 @@ from scipy.stats import qmc
 from SALib.sample import saltelli
 
 
-def get_mapping_msoa():
-    ms = pd.read_csv('/Users/gracecolverd/UKPostcodePrediction/notebooks_local/msoa_mapping.csv')
-    return ms 
 
-def sobol_gsa_sampling(problem, msoa_mapping_df, N):
-    """
-    Generate Sobol samples for GSA with MSOA hierarchy and constraints
+problem_minimum = {'num_vars': 11,
+                   'names': [ 
+'all_res_total_fl_area_H_total',
+'Pre 1919_pct',
+'Standard size detached_pct',
+'postcode_area',
+'HDD_winter',  
+'economic_activity_perc_Economically active (excluding full-time students): In employment: Employee: Full-time',
+ 'ethnic_group_perc_White: English, Welsh, Scottish, Northern Irish or British',
+ 'socio_class_perc_L1, L2 and L3: Higher managerial, administrative and professional occupations',
+ 'household_comp_perc_One-person household',
+ 'Domestic outbuilding_pct',
+ '3-4 storey and smaller flats_pct',
+ ] ,
+ 'bounds': [
+        [740.0, 6780.0], 
+          [5.6, 100.0],          # Pre 1919_pct
+          [3.6, 100] ,
+          [1830, 35460], 
+          [39.65, 52.34],
+          [0.2, 0.4],
+          [0.3, 1 ],
+          [0, 0.2] ,
+          [0.1, 0.5], 
+          [3.2, 40.9],
+          [3.2, 100]
     
-    Parameters:
-    -----------
-    problem : dict
-        SALib problem definition containing:
-        - num_vars: number of variables
-        - names: list of variable names
-        - bounds: list of (lower, upper) bounds
-    msoa_mapping_df : pd.DataFrame
-        DataFrame containing mapping between MSOA, LAD, and region
-        Must have columns: 'msoa21cd', 'ladcd', 'region'
-    N : int
-        Number of base samples (total samples will be N*(2D+2) where D is num_vars)
-    
-    Returns:
-    --------
-    np.ndarray : Array of samples ready for GSA
-    """
-    # Generate Saltelli samples for continuous variables
-    param_values = saltelli.sample(problem, N)
-    
-    # Add MSOA sampling
-    n_msoas = len(msoa_mapping_df)
-    n_samples = param_values.shape[0]
-    
-    # Generate Sobol sequence for MSOA selection
-    sampler = qmc.Sobol(d=1, scramble=True)
-    msoa_sobol = sampler.random(n=n_samples)
-    msoa_indices = (msoa_sobol * n_msoas).astype(int)
-    msoa_indices = np.minimum(msoa_indices, n_msoas - 1)
-    
-    # Get the selected MSOAs and their corresponding LAD and Region
-    selected_rows = msoa_mapping_df.iloc[msoa_indices.flatten()]
-    
-    # Create DataFrame with all variables
-    results_df = pd.DataFrame(param_values, columns=problem['names'])
-    
-    # Add geographical variables
-    results_df['msoa21cd'] = selected_rows['msoa21cd'].values
-    results_df['ladcd'] = selected_rows['ladcd'].values
-    results_df['region'] = selected_rows['region'].values
-    
-    # Add required base floor column
-    results_df['all_res_base_floor_total'] = 0.0
-    
-    # Convert back to numpy array for GSA
-    param_array = results_df[problem['names']].values
-    
-    return param_array
+ ]
+      
 
-def model_wrapper(X, predictor, problem):
-    """
-    Wrapper function to make predictions using the model
-    
-    Parameters:
-    -----------
-    X : np.ndarray
-        Input array from Saltelli sampling
-    predictor : TabularPredictor
-        Trained AutoGluon predictor
-    problem : dict
-        Problem definition
-        
-    Returns:
-    --------
-    np.ndarray : Model predictions
-    """
-    df = pd.DataFrame(X, columns=problem['names'])
-    df['all_res_base_floor_total'] = 0.0
-    
-    try:
-        predictions = predictor.predict(df).values
-        if np.any(np.isnan(predictions)) or np.any(np.isinf(predictions)):
-            print(f"Warning: NaN or Inf in predictions")
-        return predictions
-    except Exception as e:
-        print(f"Error in model prediction: {e}")
-        return np.full(len(X), np.nan)
-
-# Example usage
-if __name__ == "__main__":
-    # Updated problem definition with all continuous variables
-    problem = {
+}
+problem_fi = {
         'num_vars': 16,
         'names': [
             'all_types_uprn_count_total',
@@ -140,16 +83,7 @@ if __name__ == "__main__":
         ]
     }
     
-    # Example MSOA mapping
-    msoa_mapping = get_mapping_msoa()
-    
-    # Generate samples
-    samples = sobol_gsa_sampling(problem, msoa_mapping, N=1024)
-    
-    # The samples can then be used with the GSA script:
-    # Y = model_wrapper(samples, predictor, problem)
-    # Si = sobol.analyze(problem, Y)
-    
+ 
 
 def check_and_enforce_heating_volume_constraint(x, problem_def):
     """
