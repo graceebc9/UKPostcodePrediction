@@ -13,13 +13,13 @@ import seaborn as sns
 from src.problem_definitions import problem_minimum
 
 # Configuration
-# col_setting = int(os.getenv('COL_SETTING'))
-# folder = os.getenv('MODEL_FOLDER')
+col_setting = int(os.getenv('COL_SETTING'))
+folder = os.getenv('MODEL_FOLDER')
 dataset_name = 'NEBULA_englandwales_domestic_filtered'
-folder = 'nebula'
+# folder = 'nebula'
 region ='None'
-col_setting = 52
-label = 'total_gas'
+# col_setting = 52
+label = os.getenv('LABEL')
 
 model_path= f'/home/gb669/rds/hpc-work/energy_map/data/automl_models/{folder}/{dataset_name}__local_{label}__25000__colset_{col_setting}__best_quality___tsp_1.0__all__{region}'
 
@@ -255,7 +255,7 @@ if __name__ == "__main__":
      #plot_sobol_results(sobol_results, result_folder)
 
     group_map=None 
-    
+
     plot_sobol_heatmap(sobol_results, result_folder, problem, group_map)
     plot_sobol_indices(s1_data, st_data, result_folder, problem, group_map)
     
