@@ -549,5 +549,5 @@ settings_dict = {
 49: ['Feat Imp 25', FC_25], 
 50: ['FI + region' , feat_cols + ['oa21cd']] , 
 51: ['Feat Imp 25 no region',  FC25_noregion ],
-52: ['FI_final_minimal', fc_final] , 
+52: ['FI_final_minimal', fc_final + ['region'] ] , 
 }  
