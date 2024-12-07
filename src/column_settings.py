@@ -1,4 +1,3 @@
-
 total_builds_new = ['all_types_total_buildings' ] 
                    
 
@@ -108,6 +107,7 @@ domain_invariant = ['postcode_area',
 'all_types_premise_area_total',
 'all_types_heated_vol_H_total'
 ]
+
 
 
 rural_urban = [
@@ -522,7 +522,7 @@ settings_dict = {
 21: ['COB, NDVI' , total_builds_new + ndvi_cols],
 22: ['COB, NDVI, Temp, Urban/Rural' , total_builds_new + ndvi_cols + temp_cols + rural_urban], 
 23: ['COB, NDVI, Temp, Urban/Rural, Local Morph.' , total_builds_new + ndvi_cols + temp_cols + rural_urban + postcode_geoms ], 
-# 24: ['COB, NDVI, Temp, Urban/Rural, Local Morph., Type' ,  total_builds_new + ndvi_cols + temp_cols + rural_urban + postcode_geoms + type_cols ], 
+24: ['COB, NDVI, Temp, Urban/Rural, Local Morph., Type' ,  total_builds_new + ndvi_cols + temp_cols + rural_urban + postcode_geoms + type_cols ], 
 25: ['COB, NDVI, Temp, Urban/Rural, Local Morph., Socio-Demogs' , total_builds_new + ndvi_cols + temp_cols + rural_urban + postcode_geoms + all_census ], 
 26: ['COB, NDVI, Temp, Urban/Rural, Socio-Demogs' , total_builds_new + ndvi_cols + temp_cols + rural_urban  + all_census ], 
 27: ['COB, NDVI, Temp,\n Socio-Demogs' , total_builds_new + ndvi_cols + temp_cols  + all_census ], 
