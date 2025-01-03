@@ -1,9 +1,6 @@
 #  Machine Learning Methods for Domestic Energy Prediction for Small-Neighbourhoods at National Scales in England and Wales
-<div align="center">
-  <img src="images/logo.jpg" alt="Cambridge University Crest" width="200"/>
-  <img src="images/refficiency_logo.png" alt="REfficiency Logo" width="200"/>
-</div>
-Overview
+
+## Overview
 This repository contains the code to accompany the paper of the same name. An implementation neighbourhod energy modelling using the NEBULA dataset to predict domestic energy consumption at postcode level across England and Wales.
 
 The NEBULA dataset and associated papers can be found at https://github.com/graceebc9/NebulaDataset
