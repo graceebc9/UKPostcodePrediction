@@ -1,12 +1,15 @@
-#  Machine Learning Methods for Domestic Energy Prediction for Small-Neighbourhoods at National Scales in England and Wales
+# Machine Learning Methods for Domestic Energy Prediction for Small-Neighbourhoods at National Scales in England and Wales
 
 ## Overview
-This repository contains the code to accompany the paper of the same name. An implementation neighbourhod energy modelling using the NEBULA dataset to predict domestic energy consumption at postcode level across England and Wales.
+
+This repository contains the code to accompany the paper of the same name. An implementation of neighborhood energy modeling using the NEBULA dataset to predict domestic energy consumption at postcode level across England and Wales.
 
 The NEBULA dataset and associated papers can be found at https://github.com/graceebc9/NebulaDataset
 
-🛠 Installation & Setup
-bashCopy# Clone the repository
+## Installation & Setup
+
+```bash
+# Clone the repository
 git clone https://github.com/gracecolverd/UKPostcodePrediction.git
 
 # Navigate to the project directory
@@ -18,8 +21,12 @@ source env/bin/activate  # On Windows use: env\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
-📁 Project Structure
-CopyUKPostcodePrediction/
+```
+
+## Project Structure
+
+```
+UKPostcodePrediction/
 ├── src/
 │   ├── column_settings.py      # Column configurations and data preprocessing
 │   ├── conf.py                 # Configuration settings
@@ -29,8 +36,12 @@ CopyUKPostcodePrediction/
 ├── run_automl.py              # AutoML pipeline execution
 ├── run_feature_imp.py         # Feature importance analysis
 └── run_gsa.py                 # Global sensitivity analysis
-🚀 Usage
-pythonCopy# Run AutoML pipeline
+```
+
+## Usage
+
+```python
+# Run AutoML pipeline
 python run_automl.py
 
 # Analyze feature importance
@@ -38,9 +49,13 @@ python run_feature_imp.py
 
 # Perform global sensitivity analysis
 python run_gsa.py
-📄 License
+```
+
+## License
+
 This work is licensed under a Creative Commons Attribution 4.0 International License:
-CopyCreative Commons Attribution 4.0 International (CC BY 4.0)
+
+Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 Copyright (c) 2025 Grace Colverd
 
@@ -59,9 +74,13 @@ Under the following terms:
 
 No additional restrictions — You may not apply legal terms or technological measures 
 that legally restrict others from doing anything the license permits.
-📚 Citation
+
+## Citation
+
 If you use this code in your research, please cite:
-bibtexCopy@misc{colverd2025mlmethods,
+
+```bibtex
+@misc{colverd2025mlmethods,
   author = {Colverd, Grace},
   title = {Machine Learning Methods for Domestic Energy Prediction for Small-Neighbourhoods at National Scales in England and Wales},
   year = {2025},
@@ -69,18 +88,22 @@ bibtexCopy@misc{colverd2025mlmethods,
   journal = {GitHub repository},
   url = {https://github.com/gracecolverd/UKPostcodePrediction}
 }
-📝 Summary
+```
+
+## Summary
+
 This project implements machine learning methodologies to predict domestic energy consumption patterns across England and Wales at the postcode level. The implementation includes:
 
-Automated machine learning pipeline for model selection and optimization
-Feature importance analysis to identify key predictors of energy consumption
-Global sensitivity analysis using Sobol sequences
-Comprehensive data preprocessing and feature engineering pipeline
-Scalable methods for national-level predictions at neighborhood granularity
+- Automated machine learning pipeline for model selection and optimization
+- Feature importance analysis to identify key predictors of energy consumption
+- Global sensitivity analysis using Sobol sequences
+- Comprehensive data preprocessing and feature engineering pipeline
+- Scalable methods for national-level predictions at neighborhood granularity
 
 The codebase is structured to support reproducible research and can be extended for similar prediction tasks in other geographical contexts.
-📧 Contact
-Grace Colverd
 
-GitHub: @graceebc9
-BlueSky: 
+## Contact
+
+Grace Colverd
+- GitHub: @graceebc9
+- BlueSky: [BlueSky handle not provided]
