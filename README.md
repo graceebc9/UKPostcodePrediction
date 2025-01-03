@@ -1,6 +1,6 @@
-Machine Learning Methods for Domestic Energy Prediction for Small-Neighbourhoods at National Scales in England and Wales
+#  Machine Learning Methods for Domestic Energy Prediction for Small-Neighbourhoods at National Scales in England and Wales
 <div align="center">
-  <img src="images/cambridge_crest.png" alt="Cambridge University Crest" width="200"/>
+  <img src="images/logo.jpg" alt="Cambridge University Crest" width="200"/>
   <img src="images/refficiency_logo.png" alt="REfficiency Logo" width="200"/>
 </div>
 Overview
