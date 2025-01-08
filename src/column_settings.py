@@ -511,7 +511,7 @@ fc_final_2 = [
  '3-4 storey and smaller flats_pct',
  'region'
  ] 
-single_floor_area  = 'all_res_total_fl_area_H_total'
+single_floor_area  = ['all_res_total_fl_area_H_total']
 
 settings_dict = {
 0: ['COB' , total_builds_new ] , 
