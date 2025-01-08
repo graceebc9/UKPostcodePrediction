@@ -100,12 +100,12 @@ domain_invariant_inc_age = ['postcode_area',
 'Pre 1919_pct',
 'all_res_total_buildings',
 'all_types_premise_area_total',
-'all_res_heated_vol_H_total', 
+'all_types_total_fl_area_H_total', 
 ] 
 domain_invariant = ['postcode_area',
 'postcode_density',
 'all_types_premise_area_total',
-'all_types_heated_vol_H_total'
+'all_types_total_fl_area_H_total'
 ]
 
 
@@ -496,6 +496,21 @@ fc_final = [
  '3-4 storey and smaller flats_pct',
  ] 
 
+
+fc_final_2 = [ 
+'all_res_total_fl_area_H_total',
+'Pre 1919_pct',
+'Standard size detached_pct',
+'postcode_density',
+'HDD_winter',  
+'economic_activity_perc_Economically active (excluding full-time students): In employment: Employee: Full-time',
+ 'ethnic_group_perc_White: English, Welsh, Scottish, Northern Irish or British',
+ 'socio_class_perc_L1, L2 and L3: Higher managerial, administrative and professional occupations',
+ 'household_comp_perc_One-person household',
+ 'Domestic outbuilding_pct',
+ '3-4 storey and smaller flats_pct',
+ 'region'
+ ] 
 single_floor_area  = 'all_res_total_fl_area_H_total'
 
 settings_dict = {
@@ -552,4 +567,5 @@ settings_dict = {
 51: ['Feat Imp 25 no region',  FC25_noregion ],
 52: ['FI_final_minimal', fc_final + ['region'] ] , 
 53: ['Single_fl' , single_floor_area] , 
+54: ['test_FI_density', fc_final_2 ], 
 }  
